@@ -1,13 +1,13 @@
 const path = require("path");
 
-module.exports = {
-  entry: path.join(__dirname, "../views", "index.tsx"),
+const config = {
+  entry: path.join(__dirname, "../src/views", "index.tsx"),
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+    extensions: [".ts", ".tsx", ".js"],
   },
   devtool: "source-map",
   watchOptions: {
-    ignored: ["src/**", "**/node_modules"],
+    ignored: ["**/src/extension"],
   },
   module: {
     rules: [
@@ -17,8 +17,22 @@ module.exports = {
         exclude: "/node_modules/",
       },
       {
+        test: /\.module\.css$/,
+        include: /\.module\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/,
-        use: ["style-loader", { loader: "css-loader" }],
+        exclude: /\.module\.css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
@@ -26,4 +40,7 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "../dist/views"),
   },
+  plugins: [],
 };
+
+module.exports = config;

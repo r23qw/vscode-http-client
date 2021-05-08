@@ -1,0 +1,4 @@
+export enum REQUEST_ACTION {
+  UPDATE_URL,
+  UPDATE_METHOD,
+}
