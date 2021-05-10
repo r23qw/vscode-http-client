@@ -4,7 +4,7 @@ import styles from './index.module.css';
 
 export default function RequestPanel() {
   return <Tabs className={styles.container}>
-    <Tabs.TabPane tab="Parmas" key="1">
+    <Tabs.TabPane tab="Params" key="1">
       Params
     </Tabs.TabPane>
      <Tabs.TabPane tab="Headers" key="2">
