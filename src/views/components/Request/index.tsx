@@ -1,6 +1,6 @@
 import React from "react";
-import URLInput from "./URLInput";
+import BasicInfo from "./BasicInfo";
 
 export default function Request() {
-  return <URLInput />;
+  return <BasicInfo />;
 }

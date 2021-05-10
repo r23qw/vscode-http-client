@@ -1,9 +1,16 @@
 const path = require("path");
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const config = {
   entry: path.join(__dirname, "../src/views", "index.tsx"),
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: path.join(__dirname, "../src/views", "tsconfig.json"),
+      }),
+    ],
   },
   devtool: "source-map",
   watchOptions: {
@@ -13,7 +20,11 @@ const config = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ],
         exclude: "/node_modules/",
       },
       {
