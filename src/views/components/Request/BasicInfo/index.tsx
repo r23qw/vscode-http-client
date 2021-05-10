@@ -6,10 +6,11 @@ import styles from "./index.module.css";
 import MethodSelect from "./MethodSelect";
 
 export default function URLInput() {
+  const store = useStore();
+  const requestState = store.getState().request;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const store = useStore();
-  const [url, setUrl] = useState(useStore().getState().request);
+  const [url, setUrl] = useState(requestState.url);
 
   const handleUrlChange = (e: any) => {
     dispatch({
@@ -24,7 +25,11 @@ export default function URLInput() {
   return (
     <div className={styles.container}>
       <MethodSelect />
-      <Input onChange={handleUrlChange} placeholder="input request url" />
+      <Input
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+        placeholder="input request url"
+      />
       <Button loading={loading} type="primary" onClick={handleClick}>
         Send
       </Button>
