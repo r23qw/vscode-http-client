@@ -9,6 +9,7 @@ export default function URLInput() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const store = useStore();
+  const [url, setUrl] = useState(useStore().getState().request);
 
   const handleUrlChange = (e: any) => {
     dispatch({
