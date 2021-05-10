@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:http-client.OpenHttpClient"
+		"onCommand:http-client.OpenHttpClient",
+		"onWebviewPanel:HttpClient"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -24,6 +25,7 @@
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
 		"compile": "webpack --config ./build/node-extension.webpack.config.js",
+		"watch": "run-p watch:* -l",
 		"watch:ext": "webpack --watch --config ./build/node-extension.webpack.config.js",
 		"watch:view": "webpack --watch --mode development --config ./build/view.webpack.config.js",
 		"dev:view": "webpack serve --config ./build/view-dev.webpack.config.js",
@@ -68,12 +70,15 @@
 	},
 	"dependencies": {
 		"@types/react-redux": "^7.1.16",
+		"add": "^2.0.6",
 		"antd": "^4.15.2",
 		"axios": "^0.21.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-redux": "^7.2.4",
 		"react-router-dom": "^5.2.0",
-		"redux-thunk": "^2.3.0"
+		"react-split-pane": "^0.1.92",
+		"redux-thunk": "^2.3.0",
+		"yarn": "^1.22.10"
 	}
 }

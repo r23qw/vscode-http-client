@@ -27,7 +27,6 @@ export default function URLInput() {
       <Button loading={loading} type="primary" onClick={handleClick}>
         Send
       </Button>
-      {JSON.stringify(store.getState())}
     </div>
   );
 }

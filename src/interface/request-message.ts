@@ -1,5 +1,5 @@
 export type SendToWebviewMessage =
-  | { success: true; result: object | null }
+  | { success: true; response: object | null }
   | { success: false; error: Error | null };
 
 export interface SendToExtensionMessage {

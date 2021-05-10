@@ -17,14 +17,13 @@ export const sendRequest = (
 ) => {
   return (dispatch: Dispatch) => {
     setLoading(true);
-    return new Promise<SendToWebviewMessage>((resolve, reject) => {
+    return new Promise<SendToWebviewMessage>((resolve) => {
       const message: SendToExtensionMessage = {
         type: "request",
         payload: state,
       };
 
       window.vscode.postMessage(message);
-
       const handleMessage = (message: MessageEvent<SendToWebviewMessage>) => {
         resolve(message.data);
         window.removeEventListener("message", handleMessage);
@@ -33,7 +32,10 @@ export const sendRequest = (
     })
       .then((result) => {
         if (result.success) {
-          dispatch({ type: REQUEST_ACTION.UPDATE_REQUEST, payload: result });
+          dispatch({
+            type: REQUEST_ACTION.UPDATE_REQUEST,
+            payload: { response: result.response },
+          });
         } else {
           message.error(result.error?.message || "unknown error");
         }

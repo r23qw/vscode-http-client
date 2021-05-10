@@ -11,7 +11,7 @@ export async function handleRequest(request: any, panel: vscode.WebviewPanel) {
     });
     message = {
       success: true,
-      result: {
+      response: {
         data,
         status,
         statusText,

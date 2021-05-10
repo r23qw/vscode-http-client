@@ -10,7 +10,7 @@ import store from "./store";
 function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <ConfigProvider componentSize="large">
+      <ConfigProvider componentSize="middle">
         <div className={styles.container}>
           <Request />
         </div>

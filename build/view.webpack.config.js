@@ -35,7 +35,9 @@ const config = {
           {
             loader: "css-loader",
             options: {
-              modules: true,
+              modules: {
+                localIdentName: "[local]_[hash:base64:5]",
+              },
             },
           },
         ],
@@ -48,8 +50,8 @@ const config = {
     ],
   },
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "../dist/views"),
+    filename: "app.js",
+    path: path.resolve(__dirname, "../dist"),
   },
   plugins: [],
 };
