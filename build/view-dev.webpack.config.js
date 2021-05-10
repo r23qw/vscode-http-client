@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 const baseConfig = require("./view.webpack.config");
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -18,10 +19,14 @@ const config = {
           <title>Http Client</title>
         </head>
         <body>
-          <div id="app"/>
+          <div id="app"></div>
         </body>
       </html>
       `,
+    }),
+    new webpack.DefinePlugin({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      "process.env.VSCODE_WEBVIEW": process.env.VSCODE_WEBVIEW,
     }),
   ],
 };

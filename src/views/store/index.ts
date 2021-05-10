@@ -10,7 +10,7 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  window?.vscode.setState(store.getState());
+  window.vscode.setState(store.getState());
 });
 
 export default store;

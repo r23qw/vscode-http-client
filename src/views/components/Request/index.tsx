@@ -10,7 +10,7 @@ export default function Request() {
     <div className={styles.layout}>
       <BasicInfo />
       <div className={styles.container}>
-        <SplitPane split="horizontal" minSize={50} defaultSize="50%">
+        <SplitPane split="horizontal" minSize={200} defaultSize="50%">
           <RequestPanel />
           <ResponsePanel />
         </SplitPane>

@@ -1,6 +1,10 @@
-const previouseState = window.HTTP_CLIENT.previouseState;
+import { isVscodeWebview } from "@/utils/env";
+
+const previouseState = isVscodeWebview
+  ? window.HTTP_CLIENT.previouseState
+  : undefined;
 
 export const getPreviouseState = (module?: string) => {
-  if (!module) return previouseState;
-  return previouseState?.[module];
+  if (!module || previouseState === undefined) return undefined;
+  return previouseState[module];
 };

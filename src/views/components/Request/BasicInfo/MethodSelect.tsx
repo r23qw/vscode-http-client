@@ -1,5 +1,5 @@
 import { Select } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { HTTP_METHODS } from "../../../constants";
 
 interface Props {
@@ -8,13 +8,9 @@ interface Props {
 }
 
 export default function MethodSelect(props: Props) {
-  const { value = HTTP_METHODS.GET } = props;
-  const [method, setMethod] = useState(value);
-  const handleChange = () => {
-    setMethod(value);
-  };
+
   return (
-    <Select value={method} onChange={handleChange}>
+    <Select value={props.value || HTTP_METHODS.GET } onChange={method=>props.onChange?.(method)}>
       {Object.entries(HTTP_METHODS).map(([key, value]) => (
         <Select.Option key={value} value={value}>
           {key}
