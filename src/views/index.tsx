@@ -5,6 +5,6 @@ import { isVscodeWebview } from './utils/env';
 
 const noop = ()=>{}
 
-window.vscode = isVscodeWebview ? window.acquireVsCodeApi() : {getState:noop,setState:noop,postMessage:noop};
+window.vscode = isVscodeWebview ? window.acquireVsCodeApi() : undefined;
 
 ReactDOM.render(<App />, document.getElementById("app"));

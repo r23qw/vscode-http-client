@@ -23,7 +23,7 @@ export const sendRequest = (
         payload: state,
       };
 
-      window.vscode.postMessage(message);
+      window.vscode?.postMessage(message);
       const handleMessage = (message: MessageEvent<SendToWebviewMessage>) => {
         resolve(message.data);
         window.removeEventListener("message", handleMessage);

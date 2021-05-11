@@ -16,6 +16,7 @@ export type RequestState = {
   method: HTTP_METHODS_VALUES;
   request: {
     params: RequestRecordItem[];
+    headers: RequestRecordItem[];
   };
   response: null | object;
 };
@@ -27,6 +28,7 @@ const inititalState: RequestState = (getPreviouseState(
   method: HTTP_METHODS.GET,
   request: {
     params: [],
+    headers: [],
   },
   response: null,
 };

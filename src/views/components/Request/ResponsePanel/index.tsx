@@ -3,7 +3,7 @@ import React from "react";
 import styles from './index.module.css';
 
 export default function ResponsePanel() {
-  return <Tabs className={styles.container}>
+  return <Tabs animated={false} className={styles.container}>
     <Tabs.TabPane tab="Body" key="1">
       Params
     </Tabs.TabPane>

@@ -1,0 +1,6 @@
+export enum REQUEST_BODY_TYPE {
+  NONE,
+  FORM_DATA,
+  X_WWW_FORM_URLENCODED,
+  RAW,
+}
