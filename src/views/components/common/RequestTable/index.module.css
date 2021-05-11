@@ -1,0 +1,41 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th,
+table,
+td {
+  border: 1px solid #f0f0f0;
+  padding: 5px;
+  height: 36px;
+}
+.table th {
+  font-weight: normal;
+  text-align: left;
+}
+.table td {
+  text-align: center;
+}
+
+th.title {
+  padding-left: 17px;
+}
+
+.container {
+  height: 100%;
+  position: relative;
+  padding-top: 36px;
+}
+.container header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: -1px;
+  z-index: 1;
+  background-color: #fff;
+}
+.container section {
+  overflow: auto;
+  height: 100%;
+}

@@ -1,0 +1,6 @@
+.input,
+.input:focus,
+.input:hover {
+  height: 26px;
+  border-width: 0 !important;
+}
