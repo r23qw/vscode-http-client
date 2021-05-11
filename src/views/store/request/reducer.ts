@@ -1,11 +1,11 @@
-import { HTTP_METHODS } from "@/constants";
-import { AnyAction } from "redux";
+import { HTTP_METHODS, HTTP_METHODS_VALUES } from "@/constants";
+import { ValueOf } from "@/utils/type";
+import { Action } from "redux";
 import { getPreviouseState } from "../helper";
 import { REQUEST_ACTION } from "./action";
 
-type ValueOf<T> = T[keyof T];
-
 export type RequestRecordItem = {
+  id: number;
   key: string;
   value: string;
   checked: boolean;
@@ -13,7 +13,10 @@ export type RequestRecordItem = {
 
 export type RequestState = {
   url: string;
-  method: ValueOf<typeof HTTP_METHODS>;
+  method: HTTP_METHODS_VALUES;
+  request: {
+    params: RequestRecordItem[];
+  };
   response: null | object;
 };
 
@@ -22,12 +25,17 @@ const inititalState: RequestState = (getPreviouseState(
 ) as RequestState) || {
   url: "",
   method: HTTP_METHODS.GET,
+  request: {
+    params: [],
+  },
   response: null,
 };
 
 export default function (
   state = inititalState,
-  action: AnyAction
+  action: Action<ValueOf<typeof REQUEST_ACTION>> & {
+    payload: Partial<RequestState>;
+  }
 ): RequestState {
   switch (action.type) {
     case REQUEST_ACTION.UPDATE:

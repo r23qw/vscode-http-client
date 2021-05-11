@@ -1,36 +1,46 @@
+import { useTypedSelector } from "@/store";
 import { REQUEST_ACTION, sendRequest } from "@/store/request/action";
 import { Button, Input } from "antd";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useStore } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styles from "./index.module.css";
 import MethodSelect from "./MethodSelect";
 
 export default function URLInput() {
-  const store = useStore();
   const dispatch = useDispatch();
-  const requestState = store.getState().request;
+  const requestState = useTypedSelector((state) => state.request);
 
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState(requestState.url);
   const [method, setMethod] = useState(requestState.method);
 
-  useEffect(() => {
+  const handleChange = () => {
     dispatch({
-      type: REQUEST_ACTION.UPDATE_REQUEST,
+      type: REQUEST_ACTION.UPDATE,
       payload: { url, method },
     });
-  }, [url, method]);
+  };
 
   const handleClick = () => {
-    dispatch(sendRequest(store.getState().request, setLoading));
+    dispatch(sendRequest(requestState, setLoading));
   };
+
   return (
     <div className={styles.container}>
-      <MethodSelect value={method} onChange={(method) => setMethod(method)} />
+      <MethodSelect
+        value={method}
+        onChange={(method) => {
+          setMethod(method);
+          handleChange();
+        }}
+      />
       <Input
         size="large"
         value={url}
-        onChange={(e) => setUrl(e.target.value)}
+        onChange={(e) => {
+          setUrl(e.target.value);
+          handleChange();
+        }}
         placeholder="input request url"
       />
       <Button

@@ -2,5 +2,15 @@
 .input:focus,
 .input:hover {
   height: 26px;
+  background-color: transparent;
   border-width: 0 !important;
+}
+.row .icon {
+  color: #1890ff;
+  opacity: 0;
+  transition: opacity 0.2s;
+  margin-right: 4px;
+}
+.row:hover .icon {
+  opacity: 1;
 }

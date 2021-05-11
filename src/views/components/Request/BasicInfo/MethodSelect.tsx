@@ -1,10 +1,10 @@
 import { Select } from "antd";
 import React from "react";
-import { HTTP_METHODS } from "../../../constants";
+import { HTTP_METHODS, HTTP_METHODS_VALUES } from "../../../constants";
 
 interface Props {
-  value?: string;
-  onChange?: (value: string) => void;
+  value?: HTTP_METHODS_VALUES;
+  onChange?: (value: HTTP_METHODS_VALUES) => void;
 }
 
 export default function MethodSelect(props: Props) {

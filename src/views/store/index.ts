@@ -1,3 +1,4 @@
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { applyMiddleware, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 import rootReducers from "./root.reducers";
@@ -8,6 +9,12 @@ const store = createStore(
   rootReducers,
   composeEnhancers(applyMiddleware(thunkMiddleware))
 );
+
+type RootState = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
+
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useTypedDispatch = () => useDispatch<AppDispatch>();
 
 store.subscribe(() => {
   window.vscode.setState(store.getState());

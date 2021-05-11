@@ -55,8 +55,7 @@ export class HttpClientSerializer implements vscode.WebviewPanelSerializer {
   }
   async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
     // `state` is the state persisted using `setState` inside the webview
-    console.log(`Got state: ${state}`);
-    console.log(state);
+    console.log(`Got restore state: ${state}`);
     // Restore the content of our webview.
     //
     // Make sure we hold on to the `webviewPanel` passed in here and

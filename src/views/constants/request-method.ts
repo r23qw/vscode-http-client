@@ -7,3 +7,7 @@ export const HTTP_METHODS = {
   HEAD: "head",
   OPTIONS: "options",
 } as const;
+
+type ValueOf<T> = T[keyof T];
+
+export type HTTP_METHODS_VALUES = ValueOf<typeof HTTP_METHODS>;

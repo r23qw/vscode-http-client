@@ -1,5 +1,6 @@
 import type { RequestRecordItem } from "@/store/request/reducer";
-import React, { useState } from "react";
+import { getID } from "@/utils/uuid";
+import React, { useMemo } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import styles from "./index.module.css";
 import RequestTableRow from "./RequestTableRow";
@@ -18,11 +19,42 @@ const ColGroup = () => (
 );
 
 export default function RequestTable(props: RequestTableProps) {
-  const [data, setData] = useState(props.values);
+  const lastedID = useMemo(() => {
+    return getID();
+  }, [props.values.length]);
+
   const currentData: RequestRecordItem[] = [
-    ...data,
-    { checked: true, key: "", value: "" },
+    ...props.values,
+    { id: lastedID, checked: true, key: "", value: "" },
   ];
+
+  const handleChange = (item: RequestRecordItem) => {
+    const finalData = JSON.parse(
+      JSON.stringify(props.values)
+    ) as RequestRecordItem[];
+
+    const index = finalData.findIndex((i) => i.id === item.id);
+
+    if (index !== -1) {
+      finalData.splice(index, 1, item);
+    } else {
+      finalData.push(item);
+    }
+    props.onChange(finalData);
+  };
+
+  const handleDelete = (item: RequestRecordItem) => {
+    const finalData = JSON.parse(
+      JSON.stringify(props.values)
+    ) as RequestRecordItem[];
+
+    const index = finalData.findIndex((i) => i.id === item.id);
+
+    if (index === -1) return;
+
+    finalData.splice(index, 1);
+    props.onChange(finalData);
+  };
 
   return (
     <div className={styles.container}>
@@ -43,10 +75,13 @@ export default function RequestTable(props: RequestTableProps) {
           <table className={styles.table}>
             <ColGroup />
             <tbody>
-              {currentData.map((item) => (
+              {currentData.map((item, index) => (
                 <RequestTableRow
+                  isLast={index === currentData.length - 1}
+                  key={item.id}
                   value={item}
-                  onChange={(value) => Object.assign(item, value)}
+                  onChange={handleChange}
+                  onDelete={handleDelete}
                 />
               ))}
             </tbody>
