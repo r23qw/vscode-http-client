@@ -19,6 +19,10 @@ const ColGroup = () => (
 
 export default function RequestTable(props: RequestTableProps) {
   const [data, setData] = useState(props.values);
+  const currentData: RequestRecordItem[] = [
+    ...data,
+    { checked: true, key: "", value: "" },
+  ];
 
   return (
     <div className={styles.container}>
@@ -39,9 +43,12 @@ export default function RequestTable(props: RequestTableProps) {
           <table className={styles.table}>
             <ColGroup />
             <tbody>
-              <RequestTableRow />
-              <RequestTableRow />
-              <RequestTableRow />
+              {currentData.map((item) => (
+                <RequestTableRow
+                  value={item}
+                  onChange={(value) => Object.assign(item, value)}
+                />
+              ))}
             </tbody>
           </table>
         </Scrollbars>

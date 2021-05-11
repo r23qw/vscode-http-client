@@ -8,7 +8,7 @@ import {
 } from "../../../interface/request-message";
 
 export enum REQUEST_ACTION {
-  UPDATE_REQUEST,
+  UPDATE = "REQUEST/UPDATE",
 }
 
 export const sendRequest = (
@@ -33,7 +33,7 @@ export const sendRequest = (
       .then((result) => {
         if (result.success) {
           dispatch({
-            type: REQUEST_ACTION.UPDATE_REQUEST,
+            type: REQUEST_ACTION.UPDATE,
             payload: { response: result.response },
           });
         } else {

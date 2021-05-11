@@ -3,6 +3,7 @@ declare module "*.css" {
   export default styles;
 }
 
+declare module "react-custom-scrollbars";
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
   HTTP_CLIENT: { previouseState: any };

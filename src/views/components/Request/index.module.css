@@ -9,14 +9,27 @@
   margin-top: 10px;
 }
 .container :global .Resizer {
-  background: #eee;
   z-index: 1;
   box-sizing: border-box;
-  background-clip: padding-box;
+  position: relative;
 }
-
+.container :global .Resizer::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: #f0f0f0;
+  transition: background-color 0.15s ease;
+}
 .container :global .Resizer:hover {
   transition: all 0.3s ease;
+}
+.container :global .Resizer:hover::after {
+  background-color: #1890ff;
+  height: 2px;
 }
 
 .container :global .Resizer.horizontal {
@@ -24,9 +37,14 @@
   margin: -5px 0;
   border-top: 5px solid rgba(255, 255, 255, 0);
   border-bottom: 5px solid rgba(255, 255, 255, 0);
-  cursor: ns-resize;
+  cursor: row-resize;
   width: 100%;
 }
-.container :global .Resizer.horizontal:hover {
-  background-color: #1890ff;
+
+.container :global .ant-tabs-content {
+  height: 100%;
+}
+
+.container :global .ant-tabs-nav {
+  margin-bottom: 10px;
 }
