@@ -12,9 +12,9 @@ interface RequestTableProps {
 
 const ColGroup = () => (
   <colgroup>
-    <col width="6%" />
-    <col width="42%" />
-    <col width="42%" />
+    <col width="10%" />
+    <col width="40%" />
+    <col width="40%" />
   </colgroup>
 );
 

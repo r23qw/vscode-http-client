@@ -9,6 +9,7 @@ import {
 
 export enum REQUEST_ACTION {
   UPDATE = "REQUEST/UPDATE",
+  UPDATE_BODY = "REQUEST/UPDATE_BODY",
 }
 
 export const sendRequest = (
