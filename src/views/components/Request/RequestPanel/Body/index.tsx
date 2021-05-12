@@ -3,7 +3,6 @@ import { useTypedDispatch, useTypedSelector } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import React from "react";
 import BodyType from "./BodyType";
-import FormData from "./FormData";
 import styles from "./index.module.css";
 import None from "./None";
 import Raw from "./Raw";
@@ -26,9 +25,9 @@ export default function Body() {
         <div className={getClass(REQUEST_BODY_TYPE.NONE)}>
           <None />
         </div>
-        <div className={getClass(REQUEST_BODY_TYPE.FORM_DATA)}>
+        {/* <div className={getClass(REQUEST_BODY_TYPE.FORM_DATA)}>
           <FormData />
-        </div>
+        </div> */}
         <div className={getClass(REQUEST_BODY_TYPE.X_WWW_FORM_URLENCODED)}>
           <XwwFormUrlEncoded />
         </div>

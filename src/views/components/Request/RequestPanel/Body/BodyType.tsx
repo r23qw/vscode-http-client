@@ -14,7 +14,7 @@ export default function BodyType(props: BodyTypeProps) {
       onChange={(e) => props.onChange(e.target.value)}
     >
       <Radio value={REQUEST_BODY_TYPE.NONE}>none</Radio>
-      <Radio value={REQUEST_BODY_TYPE.FORM_DATA}>form data</Radio>
+      {/* <Radio value={REQUEST_BODY_TYPE.FORM_DATA}>form data</Radio> */}
       <Radio value={REQUEST_BODY_TYPE.X_WWW_FORM_URLENCODED}>
         x-www-form-urlencoded
       </Radio>
