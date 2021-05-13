@@ -4,3 +4,9 @@
 .hidden {
   display: none;
 }
+.type {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

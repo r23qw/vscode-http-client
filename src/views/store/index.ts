@@ -10,7 +10,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunkMiddleware))
 );
 
-type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>;
 type AppDispatch = typeof store.dispatch;
 
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
