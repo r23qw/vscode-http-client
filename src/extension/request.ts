@@ -1,14 +1,33 @@
+import type { AxiosRequestConfig } from "axios";
 import axios from "axios";
+import Url from "url-parse";
 import * as vscode from "vscode";
 import { SendToWebviewMessage } from "../interface/request-message";
+import { RequestState } from "../views/store/request/reducer";
 
-export async function handleRequest(request: any, panel: vscode.WebviewPanel) {
+export const getRequestConfig = (state: RequestState): AxiosRequestConfig => {
+  const url = new Url(state.url);
+
+  if (!url.protocol) {
+    url.set("protocol", "http");
+  }
+
+  return {
+    url: url.href,
+    method: state.method,
+  };
+};
+
+export async function handleRequest(
+  state: RequestState,
+  panel: vscode.WebviewPanel
+) {
   let message: SendToWebviewMessage | null = null;
 
   try {
-    const { data, status, statusText, headers } = await axios({
-      url: request.url,
-    });
+    const { data, status, statusText, headers } = await axios(
+      getRequestConfig(state)
+    );
     message = {
       success: true,
       response: {

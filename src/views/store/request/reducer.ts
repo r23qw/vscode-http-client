@@ -1,9 +1,11 @@
 import {
-  EditorLanguage,
   HTTP_METHODS,
   HTTP_METHODS_VALUES,
+  LANGUAGE,
+  RequestLanguageList,
   REQUEST_BODY_TYPE,
 } from "@/constants";
+import { ValueOfSelectList } from "@/utils/type";
 import { Action } from "redux";
 import { getPreviouseState } from "../helper";
 import { REQUEST_ACTION } from "./action";
@@ -26,7 +28,7 @@ export type RequestState = {
       [REQUEST_BODY_TYPE.FORM_DATA]: RequestRecordItem[];
       [REQUEST_BODY_TYPE.X_WWW_FORM_URLENCODED]: RequestRecordItem[];
       [REQUEST_BODY_TYPE.RAW]: {
-        lang: EditorLanguage;
+        lang: ValueOfSelectList<typeof RequestLanguageList>;
         value: string;
       };
     };
@@ -48,7 +50,7 @@ let inititalState: RequestState =
             [REQUEST_BODY_TYPE.FORM_DATA]: [],
             [REQUEST_BODY_TYPE.X_WWW_FORM_URLENCODED]: [],
             [REQUEST_BODY_TYPE.RAW]: {
-              lang: EditorLanguage.JSON,
+              lang: LANGUAGE.JSON,
               value: "",
             },
           },

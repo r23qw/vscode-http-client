@@ -2,6 +2,7 @@ import { REQUEST_BODY_TYPE } from "@/constants";
 import { useTypedDispatch, useTypedSelector } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import Editor, { useMonaco } from "@monaco-editor/react";
+import { Spin } from "antd";
 import React, { useEffect, useRef } from "react";
 
 export default function Raw() {
@@ -36,12 +37,13 @@ export default function Raw() {
   return (
     <Editor
       path="http://http-client/body.json"
+      loading={<Spin />}
       options={{
         minimap: { enabled: false },
       }}
       onChange={handleContentChange}
       onMount={handleEditorMounted}
-      defaultLanguage={lang}
+      defaultLanguage={lang as string}
       defaultValue={value}
     />
   );

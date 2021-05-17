@@ -7,6 +7,6 @@ declare module "react-custom-scrollbars";
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
   HTTP_CLIENT: { previouseState: any };
-  vscode: vscode;
+  vscodeRef: vscode;
   acquireVsCodeApi: () => vscode;
 }

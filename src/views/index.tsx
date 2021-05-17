@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { isVscodeWebview } from './utils/env';
+import { isVscodeWebview } from "./utils/env";
 
-const noop = ()=>{}
+const noop = () => {};
 
-window.vscode = isVscodeWebview ? window.acquireVsCodeApi() : undefined;
+window.vscodeRef = isVscodeWebview ? window.acquireVsCodeApi() : undefined;
 
 ReactDOM.render(<App />, document.getElementById("app"));

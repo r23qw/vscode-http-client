@@ -1,13 +1,14 @@
 import EditorLanguageSelect from "@/components/common/EditorLanguageSelect";
-import { EditorLanguage, REQUEST_BODY_TYPE } from "@/constants";
+import { RequestLanguageList, REQUEST_BODY_TYPE } from "@/constants";
 import { useTypedDispatch, useTypedSelector } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
+import { ValueOfSelectList } from "@/utils/type";
 import ErrorBoundary from "antd/lib/alert/ErrorBoundary";
 import React from "react";
-import BodyType from "./BodyType";
 import styles from "./index.module.css";
 import None from "./None";
 import Raw from "./Raw";
+import BodyType from "./RequestBodyType";
 import XwwFormUrlEncoded from "./XWwwFormUrlEncoded";
 
 export default function Body() {
@@ -18,7 +19,9 @@ export default function Body() {
     dispath({ type: REQUEST_ACTION.UPDATE_BODY, payload: { type } });
   };
 
-  const handleLangChange = (lang: EditorLanguage) => {
+  const handleLangChange = (
+    lang: ValueOfSelectList<typeof RequestLanguageList>
+  ) => {
     dispath({
       type: REQUEST_ACTION.UPDATE_BODY,
       payload: {

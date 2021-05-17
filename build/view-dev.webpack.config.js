@@ -24,10 +24,6 @@ const config = {
       </html>
       `,
     }),
-    new webpack.DefinePlugin({
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      "process.env.VSCODE_WEBVIEW": process.env.VSCODE_WEBVIEW,
-    }),
   ],
 };
 

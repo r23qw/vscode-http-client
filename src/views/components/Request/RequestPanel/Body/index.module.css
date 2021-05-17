@@ -1,6 +1,15 @@
+.container {
+  height: 100%;
+}
+
 .content {
   padding-top: 10px;
+  height: calc(100% - 42px);
 }
+.content > div {
+  height: 100%;
+}
+
 .hidden {
   display: none;
 }

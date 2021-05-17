@@ -1,5 +1,7 @@
 import * as path from "path";
 import * as vscode from "vscode";
+import { SendToExtensionMessage } from "../interface/request-message";
+import { handleRequest } from "./request";
 
 export function getPanel(
   context: vscode.ExtensionContext,
@@ -37,11 +39,20 @@ function getWebviewContent(
         </head>
         <body>
           <div id="app"></div>
-          <script>
-            window.HTTP_CLIENT = {
-              previouseState: ${JSON.stringify(previouseState)}
-            }
-          </script>
+          ${
+            previouseState
+              ? `
+                <script>
+                  window.HTTP_CLIENT = {
+                    previouseState: "${encodeURI(
+                      JSON.stringify(previouseState)
+                    )}"
+                  }
+                </script>
+          `
+              : ""
+          }
+          
           <script src="${panel.webview.asWebviewUri(scriptUrl)}"></script>
         </body>
       </html>
@@ -50,20 +61,40 @@ function getWebviewContent(
 
 export class HttpClientSerializer implements vscode.WebviewPanelSerializer {
   scriptUrl: vscode.Uri;
-  constructor(scriptUrl: vscode.Uri) {
+  currentPanel: { current: vscode.WebviewPanel | undefined };
+  constructor(
+    scriptUrl: vscode.Uri,
+    currentPanel: { current: vscode.WebviewPanel | undefined }
+  ) {
     this.scriptUrl = scriptUrl;
+    this.currentPanel = currentPanel;
   }
   async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
-    // `state` is the state persisted using `setState` inside the webview
-    console.log(`Got restore state: ${state}`);
-    // Restore the content of our webview.
-    //
-    // Make sure we hold on to the `webviewPanel` passed in here and
-    // also restore any event listeners we need on it.
     webviewPanel.webview.html = getWebviewContent(
       webviewPanel,
       this.scriptUrl,
       state
     );
+    this.currentPanel.current = webviewPanel;
+    initialPanel(this.currentPanel);
   }
+}
+
+export function initialPanel(currentPanel: {
+  current: vscode.WebviewPanel | undefined;
+}) {
+  currentPanel.current?.onDidDispose(() => {
+    currentPanel.current = undefined;
+  }, null);
+
+  currentPanel.current?.webview.onDidReceiveMessage(
+    (message: SendToExtensionMessage) => {
+      if (message.type === "request") {
+        handleRequest(
+          message.payload,
+          currentPanel.current as vscode.WebviewPanel
+        );
+      }
+    }
+  );
 }

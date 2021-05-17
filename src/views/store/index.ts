@@ -17,7 +17,8 @@ export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useTypedDispatch = () => useDispatch<AppDispatch>();
 
 store.subscribe(() => {
-  window.vscode?.setState(store.getState());
+  console.log(store.getState());
+  window.vscodeRef?.setState(store.getState());
 });
 
 export default store;

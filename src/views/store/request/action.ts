@@ -1,7 +1,8 @@
 import { RequestState } from "@/store/request/reducer";
 import { message } from "antd";
 import type React from "react";
-import type { Dispatch } from "redux";
+import type { Action } from "redux";
+import type { ThunkDispatch } from "redux-thunk";
 import {
   SendToExtensionMessage,
   SendToWebviewMessage,
@@ -16,19 +17,28 @@ export const sendRequest = (
   state: RequestState,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  return (dispatch: Dispatch) => {
+  return (
+    dispatch: ThunkDispatch<
+      RequestState,
+      { payload: Partial<RequestState> },
+      Action<REQUEST_ACTION.UPDATE>
+    >
+  ) => {
     setLoading(true);
     return new Promise<SendToWebviewMessage>((resolve) => {
       const message: SendToExtensionMessage = {
         type: "request",
         payload: state,
       };
+      console.log("[to extension]", message);
+      window.vscodeRef?.postMessage(message);
 
-      window.vscode?.postMessage(message);
       const handleMessage = (message: MessageEvent<SendToWebviewMessage>) => {
+        console.log("recieve", message);
         resolve(message.data);
         window.removeEventListener("message", handleMessage);
       };
+
       window.addEventListener("message", handleMessage);
     })
       .then((result) => {

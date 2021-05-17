@@ -9,17 +9,13 @@ import MethodSelect from "./MethodSelect";
 export default function URLInput() {
   const dispatch = useDispatch();
   const requestState = useTypedSelector((state) => state.request);
-
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState(requestState.url);
-  const [method, setMethod] = useState(requestState.method);
 
-  const handleChange = () => {
+  const handleChange = (payload: Partial<typeof requestState>) =>
     dispatch({
       type: REQUEST_ACTION.UPDATE,
-      payload: { url, method },
+      payload,
     });
-  };
 
   const handleClick = () => {
     dispatch(sendRequest(requestState, setLoading));
@@ -28,19 +24,13 @@ export default function URLInput() {
   return (
     <div className={styles.container}>
       <MethodSelect
-        value={method}
-        onChange={(method) => {
-          setMethod(method);
-          handleChange();
-        }}
+        value={requestState.method}
+        onChange={(method) => handleChange({ method })}
       />
       <Input
         size="large"
-        value={url}
-        onChange={(e) => {
-          setUrl(e.target.value);
-          handleChange();
-        }}
+        value={requestState.url}
+        onChange={(e) => handleChange({ url: e.target.value })}
         placeholder="input request url"
       />
       <Button

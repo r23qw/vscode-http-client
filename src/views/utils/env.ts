@@ -1,1 +1,1 @@
-export const isVscodeWebview = process.env.VSCODE_WEBVIEW === "true";
+export const isVscodeWebview = typeof window.acquireVsCodeApi === "function";

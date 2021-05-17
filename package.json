@@ -28,7 +28,7 @@
 		"compile": "webpack --config ./build/node-extension.webpack.config.js",
 		"watch": "run-p watch:* -l",
 		"watch:ext": "webpack --watch --config ./build/node-extension.webpack.config.js",
-		"watch:view": "cross-env VSCODE_WEBVIEW=true webpack --watch --mode development --config ./build/view.webpack.config.js",
+		"watch:view": "webpack --watch --mode development --config ./build/view.webpack.config.js",
 		"dev:view": "webpack serve --config ./build/view-dev.webpack.config.js",
 		"package": "webpack --mode production --devtool hidden-source-map --config ./build/node-extension.webpack.config.js",
 		"test-compile": "tsc -p ./",
@@ -45,10 +45,10 @@
 		"@types/react-custom-scrollbars": "^4.0.7",
 		"@types/react-dom": "^17.0.3",
 		"@types/react-router-dom": "^5.1.7",
+		"@types/url-parse": "^1.4.3",
 		"@types/vscode": "^1.46.0",
 		"@typescript-eslint/eslint-plugin": "^4.9.0",
 		"@typescript-eslint/parser": "^4.9.0",
-		"cross-env": "^7.0.3",
 		"css-loader": "^5.2.2",
 		"eslint": "^7.15.0",
 		"eslint-config-prettier": "^8.2.0",
@@ -84,6 +84,7 @@
 		"react-redux": "^7.2.4",
 		"react-router-dom": "^5.2.0",
 		"react-split-pane": "^0.1.92",
-		"redux-thunk": "^2.3.0"
+		"redux-thunk": "^2.3.0",
+		"url-parse": "^1.5.1"
 	}
 }

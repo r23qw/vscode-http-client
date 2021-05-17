@@ -7,7 +7,7 @@ interface BodyTypeProps {
   onChange: (value: REQUEST_BODY_TYPE) => void;
 }
 
-export default function BodyType(props: BodyTypeProps) {
+export default function ResquestBodyType(props: BodyTypeProps) {
   return (
     <Radio.Group
       value={props.value}
