@@ -11,7 +11,7 @@ export default function FormData() {
 
   const handleChange = (data: RequestRecordItem[]) => {
     dispath({
-      type: REQUEST_ACTION.UPDATE_BODY,
+      type: REQUEST_ACTION.UPDATE_REQUEST_BODY,
       payload: { [REQUEST_BODY_TYPE.X_WWW_FORM_URLENCODED]: data },
     });
   };

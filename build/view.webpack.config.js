@@ -24,6 +24,9 @@ const config = {
         use: [
           {
             loader: "ts-loader",
+            options: {
+              configFile: path.join(__dirname, "../src/views", "tsconfig.json"),
+            },
           },
         ],
         exclude: "/node_modules/",

@@ -1,5 +1,9 @@
 import EditorLanguageSelect from "@/components/common/EditorLanguageSelect";
-import { RequestLanguageList, REQUEST_BODY_TYPE } from "@/constants";
+import {
+  LanguageList,
+  RequestLanguageList,
+  REQUEST_BODY_TYPE,
+} from "@/constants";
 import { useTypedDispatch, useTypedSelector } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import { ValueOfSelectList } from "@/utils/type";
@@ -16,14 +20,12 @@ export default function Body() {
   const dispath = useTypedDispatch();
 
   const handleTypeChange = (type: REQUEST_BODY_TYPE) => {
-    dispath({ type: REQUEST_ACTION.UPDATE_BODY, payload: { type } });
+    dispath({ type: REQUEST_ACTION.UPDATE_REQUEST_BODY, payload: { type } });
   };
 
-  const handleLangChange = (
-    lang: ValueOfSelectList<typeof RequestLanguageList>
-  ) => {
+  const handleLangChange = (lang: ValueOfSelectList<LanguageList>) => {
     dispath({
-      type: REQUEST_ACTION.UPDATE_BODY,
+      type: REQUEST_ACTION.UPDATE_REQUEST_BODY,
       payload: {
         [REQUEST_BODY_TYPE.RAW]: {
           ...body[REQUEST_BODY_TYPE.RAW],
@@ -43,6 +45,7 @@ export default function Body() {
           <BodyType value={body.type} onChange={handleTypeChange} />
           <span className={getClass(REQUEST_BODY_TYPE.RAW)}>
             <EditorLanguageSelect
+              languages={RequestLanguageList}
               value={body[REQUEST_BODY_TYPE.RAW].lang}
               onChange={handleLangChange}
             />

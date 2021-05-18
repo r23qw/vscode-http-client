@@ -1,11 +1,12 @@
-import { RequestLanguageList } from "@/constants";
+import { LanguageList } from "@/constants";
 import { ValueOfSelectList } from "@/utils/type";
 import { Select } from "antd";
 import React from "react";
 
 interface EditorLanguageSelectProps {
-  value: ValueOfSelectList<typeof RequestLanguageList>;
-  onChange: (value: ValueOfSelectList<typeof RequestLanguageList>) => void;
+  languages: LanguageList;
+  value: ValueOfSelectList<LanguageList>;
+  onChange: (value: ValueOfSelectList<LanguageList>) => void;
 }
 
 export default function EditorLanguageSelect(props: EditorLanguageSelectProps) {
@@ -16,7 +17,7 @@ export default function EditorLanguageSelect(props: EditorLanguageSelectProps) {
       value={props.value}
       onChange={(lang) => props.onChange(lang)}
     >
-      {RequestLanguageList.map(({ name, value }) => (
+      {props.languages.map(({ name, value }) => (
         <Select.Option key={value} value={value}>
           {name}
         </Select.Option>

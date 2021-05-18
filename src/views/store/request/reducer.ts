@@ -5,7 +5,7 @@ import {
   RequestLanguageList,
   REQUEST_BODY_TYPE,
 } from "@/constants";
-import { ValueOfSelectList } from "@/utils/type";
+import { ValueOf, ValueOfSelectList } from "@/utils/type";
 import { Action } from "redux";
 import { getPreviouseState } from "../helper";
 import { REQUEST_ACTION } from "./action";
@@ -33,7 +33,13 @@ export type RequestState = {
       };
     };
   };
-  response: null | object;
+  response: {
+    lang: ValueOf<typeof LANGUAGE>;
+    data: string;
+    headers: Record<string, string>;
+    status: number | null;
+    statusText: string;
+  };
 };
 let previouseState = getPreviouseState("request");
 let inititalState: RequestState =
@@ -55,26 +61,43 @@ let inititalState: RequestState =
             },
           },
         },
-        response: null,
+        response: {
+          lang: LANGUAGE.PLAIN_TEXT,
+          data: "",
+          headers: {},
+          status: null,
+          statusText: "",
+        },
       };
 
 export default function (
   state = inititalState,
   action: Action<REQUEST_ACTION> & {
-    payload: REQUEST_ACTION extends REQUEST_ACTION.UPDATE_BODY
+    payload: REQUEST_ACTION extends REQUEST_ACTION.UPDATE_REQUEST_BODY
       ? Partial<RequestState["request"]["body"]>
       : Partial<RequestState>;
   }
 ): RequestState {
   switch (action.type) {
-    case REQUEST_ACTION.UPDATE:
+    case REQUEST_ACTION.UPDATE: {
       return { ...state, ...action.payload };
-    case REQUEST_ACTION.UPDATE_BODY:
+    }
+    case REQUEST_ACTION.UPDATE_REQUEST_BODY: {
       const request = state.request;
       return {
         ...state,
         request: { ...request, body: { ...request.body, ...action.payload } },
       };
+    }
+    case REQUEST_ACTION.UPDATE_RESPONSE: {
+      return {
+        ...state,
+        response: {
+          ...state.response,
+          ...action.payload,
+        },
+      };
+    }
     default:
       return state;
   }

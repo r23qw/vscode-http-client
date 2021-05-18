@@ -1,0 +1,14 @@
+.container {
+  height: 100%;
+}
+
+.controller {
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.editor-wrapper {
+  padding-top: 10px;
+  height: calc(100% - 42px);
+}

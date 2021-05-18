@@ -1,6 +1,6 @@
 import type { AxiosRequestConfig } from "axios";
 import axios from "axios";
-import Url from "url-parse";
+import * as Url from "url-parse";
 import * as vscode from "vscode";
 import { SendToWebviewMessage } from "../interface/request-message";
 import { RequestState } from "../views/store/request/reducer";
