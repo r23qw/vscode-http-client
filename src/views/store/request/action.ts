@@ -22,7 +22,7 @@ export const sendRequest = (
     dispatch: ThunkDispatch<
       RequestState,
       { payload: Partial<RequestState> },
-      Action<REQUEST_ACTION.UPDATE>
+      Action<REQUEST_ACTION.UPDATE_RESPONSE>
     >
   ) => {
     setLoading(true);
@@ -35,7 +35,6 @@ export const sendRequest = (
       window.vscodeRef?.postMessage(message);
 
       const handleMessage = (message: MessageEvent<SendToWebviewMessage>) => {
-        console.log("recieve", message);
         resolve(message.data);
         window.removeEventListener("message", handleMessage);
       };
@@ -45,8 +44,8 @@ export const sendRequest = (
       .then((result) => {
         if (result.success) {
           dispatch({
-            type: REQUEST_ACTION.UPDATE,
-            payload: { response: result.response },
+            type: REQUEST_ACTION.UPDATE_RESPONSE,
+            payload: result.response,
           });
         } else {
           message.error(result.error?.message || "unknown error");

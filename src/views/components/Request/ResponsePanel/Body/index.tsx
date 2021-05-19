@@ -1,4 +1,5 @@
 import EditorLanguageSelect from "@/components/common/EditorLanguageSelect";
+import NoData from "@/components/common/NoData";
 import { LanguageList, ResponseLanguageList } from "@/constants";
 import { useTypedDispatch, useTypedSelector } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
@@ -10,16 +11,18 @@ import styles from "./index.module.css";
 
 export default function Body() {
   const response = useTypedSelector((state) => state.request.response);
+
   const dispatch = useTypedDispatch();
-  const path = "http-client://response-body";
   const monaco = useMonaco();
+  const path = "http-client://response-body";
 
   useEffect(() => {
     if (!monaco) return;
     const model = monaco.editor.getModel(path);
     if (!model) return;
     monaco.editor.setModelLanguage(model, response.lang);
-  }, [monaco, response.lang]);
+    model.setValue(response.data);
+  }, [monaco, response.lang, response.data]);
 
   const handleLangChange = (lang: ValueOfSelectList<LanguageList>) => {
     dispatch({
@@ -28,6 +31,9 @@ export default function Body() {
     });
   };
 
+  if (!response.data) {
+    return <NoData />;
+  }
   return (
     <div className={styles.container}>
       <div className={styles.controller}>

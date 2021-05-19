@@ -45,6 +45,7 @@
 		"@types/react-custom-scrollbars": "^4.0.7",
 		"@types/react-dom": "^17.0.3",
 		"@types/react-router-dom": "^5.1.7",
+		"@types/set-cookie-parser": "^2.4.0",
 		"@types/url-parse": "^1.4.3",
 		"@types/vscode": "^1.46.0",
 		"@typescript-eslint/eslint-plugin": "^4.9.0",
@@ -84,9 +85,9 @@
 		"react-custom-scrollbars": "^4.2.1",
 		"react-dom": "^17.0.2",
 		"react-redux": "^7.2.4",
-		"react-router-dom": "^5.2.0",
 		"react-split-pane": "^0.1.92",
 		"redux-thunk": "^2.3.0",
+		"set-cookie-parser": "^2.4.8",
 		"url-parse": "^1.5.1",
 		"yargs": "^17.0.1"
 	}

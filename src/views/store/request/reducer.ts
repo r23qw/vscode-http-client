@@ -36,7 +36,7 @@ export type RequestState = {
   response: {
     lang: ValueOf<typeof LANGUAGE>;
     data: string;
-    headers: Record<string, string>;
+    headers: Record<string, string | string[]>;
     status: number | null;
     statusText: string;
   };
