@@ -30,6 +30,7 @@ export default function URLInput() {
       <Input
         size="large"
         value={requestState.url}
+        onPressEnter={handleClick}
         onChange={(e) => handleChange({ url: e.target.value })}
         placeholder="input request url"
       />
