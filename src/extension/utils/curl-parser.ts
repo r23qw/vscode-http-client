@@ -1,8 +1,9 @@
 // from https://github.com/NickCarneiro/curlconverter/blob/master/util.js
-import * as cookie from "cookie";
-import * as querystring from "querystring";
+// @ts-nocheck
+import cookie from "cookie";
+import querystring from "querystring";
 import * as URL from "url";
-import * as yargs from "yargs";
+import yargs from "yargs";
 
 export const parseCurlCommand = (curlCommand: string) => {
   // Remove newlines (and from continuations)
@@ -38,27 +39,22 @@ export const parseCurlCommand = (curlCommand: string) => {
   // if url argument wasn't where we expected it, try to find it in the other arguments
   if (!url) {
     for (const argName in parsedArguments) {
-      if (typeof parsedArguments[argName] === "string") {
-        if (
-          parsedArguments[argName].indexOf("http") === 0 ||
-          parsedArguments[argName].indexOf("www.") === 0
-        ) {
-          url = parsedArguments[argName];
+      const arg = parsedArguments[argName];
+      if (typeof arg === "string") {
+        if (arg.indexOf("http") === 0 || arg.indexOf("www.") === 0) {
+          url = arg;
         }
       }
     }
   }
 
-  let headers;
+  let headers: Record<string, string> = {};
 
   if (parsedArguments.header) {
-    if (!headers) {
-      headers = {};
-    }
     if (!Array.isArray(parsedArguments.header)) {
       parsedArguments.header = [parsedArguments.header];
     }
-    parsedArguments.header.forEach((header) => {
+    (parsedArguments.header as Record<string, any>[]).forEach((header) => {
       if (header.indexOf("Cookie") !== -1) {
         cookieString = header;
       } else {
@@ -71,10 +67,7 @@ export const parseCurlCommand = (curlCommand: string) => {
   }
 
   if (parsedArguments["user-agent"]) {
-    if (!headers) {
-      headers = {};
-    }
-    headers["User-Agent"] = parsedArguments["user-agent"];
+    headers["User-Agent"] = parsedArguments["user-agent"] as string;
   }
 
   if (parsedArguments.b) {
@@ -177,7 +170,7 @@ export const parseCurlCommand = (curlCommand: string) => {
   }
 
   urlObject.search = null; // Clean out the search/query portion.
-  const request = {
+  const request: Record<string, any> = {
     url: url,
     urlWithoutQuery: URL.format(urlObject),
   };

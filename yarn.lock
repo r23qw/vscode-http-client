@@ -318,6 +318,18 @@
   resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.55.0.tgz#58cfbebbd32b3e374e07e7858b1fd0e92b1a1d2b"
   integrity sha512-49hysH7jneTQoSC8TWbAi7nKK9Lc5osQNjmDHVosrcU8o3jecD9GrK0Qyul8q4aGPSXRfNGqIp9CBdb13akETg==
 
+"@types/yargs-parser@*":
+  version "20.2.0"
+  resolved "https://registry.nlark.com/@types/yargs-parser/download/@types/yargs-parser-20.2.0.tgz#dd3e6699ba3237f0348cd085e4698780204842f9"
+  integrity sha1-3T5mmboyN/A0jNCF5GmHgCBIQvk=
+
+"@types/yargs@^16.0.2":
+  version "16.0.2"
+  resolved "https://registry.nlark.com/@types/yargs/download/@types/yargs-16.0.2.tgz?cache=0&sync_timestamp=1621356301535&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fyargs%2Fdownload%2F%40types%2Fyargs-16.0.2.tgz#b860dfa2964425239bba37ab3178b0acd79b8a61"
+  integrity sha1-uGDfopZEJSObujerMXiwrNebimE=
+  dependencies:
+    "@types/yargs-parser" "*"
+
 "@typescript-eslint/eslint-plugin@^4.9.0":
   version "4.22.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.22.0.tgz#3d5f29bb59e61a9dba1513d491b059e536e16dbc"
@@ -4055,6 +4067,11 @@ querystring@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
   integrity sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
+
+querystring@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npm.taobao.org/querystring/download/querystring-0.2.1.tgz#40d77615bb09d16902a85c3e38aa8b5ed761c2dd"
+  integrity sha1-QNd2FbsJ0WkCqFw+OKqLXtdhwt0=
 
 querystringify@^2.1.1:
   version "2.2.0"
