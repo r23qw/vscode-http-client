@@ -9,15 +9,15 @@ import styles from "./index.module.css";
 export default function ResponsePanel() {
   return (
     <Tabs animated={false} className={styles.container}>
-      <Tabs.TabPane tab="Body" key="1">
+      <Tabs.TabPane tab="Body" key="body">
         <ErrorBoundary>
           <Body />
         </ErrorBoundary>
       </Tabs.TabPane>
-      <Tabs.TabPane tab="Headers" key="3">
+      <Tabs.TabPane tab="Headers" key="headers">
         <Headers />
       </Tabs.TabPane>
-      <Tabs.TabPane tab="Cookies" key="2">
+      <Tabs.TabPane tab="Cookies" key="cookies">
         <Cookies />
       </Tabs.TabPane>
     </Tabs>

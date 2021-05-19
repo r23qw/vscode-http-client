@@ -15,11 +15,11 @@ const ColGroup = () => (
 
 export default function KeyValueTable(props: KeyValueTableProps) {
   const TableRows = () => {
-    return Object.entries(props.values).map(([key, value]) => {
+    return Object.entries(props.values).map(([key, value], index) => {
       if (value instanceof Array) {
         return value.map((value) => {
           return (
-            <tr key={key + value}>
+            <tr key={index}>
               <td>{key}</td>
               <td>{value}</td>
             </tr>
@@ -27,7 +27,7 @@ export default function KeyValueTable(props: KeyValueTableProps) {
         });
       }
       return (
-        <tr key={key + value}>
+        <tr key={index}>
           <td>{key}</td>
           <td>{value}</td>
         </tr>
