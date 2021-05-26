@@ -13,13 +13,14 @@ export enum REQUEST_ACTION {
   CHANGE_REQUEST_TAB = "REQUEST/CHANGE_REQUEST_TAB",
   DELETE_REQUEST = "REQUEST/DELETE_REQUEST",
   UPDATE_REQUEST = "REQUEST/UPDATE_REQUEST",
+  UPDATE_REQUEST_LOADING = "REQUEST/UPDATE_REQUEST_LOADING",
   UPDATE_REQUEST_BODY = "REQUEST/UPDATE_REQUEST_BODY",
   UPDATE_RESPONSE = "REQUEST/UPDATE_RESPONSE",
 }
 
 export const sendRequest = (
   state: RequestState,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setLoading: React.Dispatch<boolean>
 ) => {
   return (
     dispatch: ThunkDispatch<

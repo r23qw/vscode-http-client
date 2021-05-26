@@ -20,6 +20,7 @@ export type RequestRecordItem = {
 
 export type RequestState = {
   id: string;
+  loading: boolean;
   url: string;
   method: HTTP_METHODS_VALUES;
   request: {
@@ -47,6 +48,7 @@ export type RequestState = {
 const createRequest = (): RequestState => {
   return {
     id: getID(),
+    loading: false,
     url: "",
     method: HTTP_METHODS.GET,
     request: {
@@ -134,6 +136,17 @@ export default function (
             ...action.payload,
           },
         },
+      };
+      return state;
+    }
+    case REQUEST_ACTION.UPDATE_REQUEST_LOADING: {
+      const index = state.requestList.findIndex(
+        (i) => i.id === action.payload.id
+      );
+      const target = state.requestList[index];
+      state.requestList[index] = {
+        ...target,
+        loading: action.payload.loading,
       };
       return state;
     }
