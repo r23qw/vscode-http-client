@@ -1,16 +1,17 @@
 import { REQUEST_BODY_TYPE } from "@/constants";
-import { useTypedDispatch, useTypedSelector } from "@/store";
+import { useRequestSelector, useTypedDispatch } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Spin } from "antd";
 import React, { useEffect } from "react";
 
 export default function Raw() {
-  const body = useTypedSelector((state) => state.request.request.body);
+  const request = useRequestSelector();
+  const body = request.request.body;
   const { lang, value } = body[REQUEST_BODY_TYPE.RAW];
   const dispatch = useTypedDispatch();
   const monaco = useMonaco();
-  const path = "http-client://request-body";
+  const path = `http-client://request-body/${request.id}`;
 
   useEffect(() => {
     if (!monaco) return;

@@ -10,7 +10,6 @@ interface Props {
 export default function MethodSelect(props: Props) {
   return (
     <Select
-      size="large"
       value={props.value || HTTP_METHODS.GET}
       onChange={(method) => props.onChange?.(method)}
     >

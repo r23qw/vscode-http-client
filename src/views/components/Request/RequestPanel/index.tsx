@@ -1,9 +1,9 @@
 import { Tabs } from "antd";
 import React from "react";
-import Body from './Body';
-import Headers from './Headers';
+import Headers from "./Headers";
 import styles from "./index.module.css";
 import Params from "./Params";
+import RequestBody from "./RequestBody";
 
 export default function RequestPanel() {
   return (
@@ -15,7 +15,7 @@ export default function RequestPanel() {
         <Headers />
       </Tabs.TabPane>
       <Tabs.TabPane tab="Body" key="body">
-        <Body/>
+        <RequestBody />
       </Tabs.TabPane>
     </Tabs>
   );

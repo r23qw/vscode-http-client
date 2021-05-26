@@ -1,6 +1,5 @@
-import store from "@/store";
-import { UUID_ACTION } from "@/store/uuid/action";
+import { v1 as uuidv1 } from "uuid";
+
 export const getID = () => {
-  store.dispatch({ type: UUID_ACTION.GET_ID });
-  return store.getState().uuid.id;
+  return uuidv1();
 };

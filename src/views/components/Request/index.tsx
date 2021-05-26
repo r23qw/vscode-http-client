@@ -4,6 +4,7 @@ import BasicInfo from "./BasicInfo";
 import styles from "./index.module.css";
 import RequestPanel from "./RequestPanel";
 import ResponsePanel from "./ResponsePanel";
+import TabsBar from "./TabsBar";
 
 export default function Request() {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,6 +17,7 @@ export default function Request() {
 
   return (
     <div className={styles.layout}>
+      <TabsBar />
       <BasicInfo />
       <div ref={ref} className={styles.container}>
         <SplitPane

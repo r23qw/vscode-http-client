@@ -1,4 +1,4 @@
-import { useTypedSelector } from "@/store";
+import { useRequestSelector } from "@/store";
 import { REQUEST_ACTION, sendRequest } from "@/store/request/action";
 import { Button, Input } from "antd";
 import React, { useState } from "react";
@@ -6,14 +6,14 @@ import { useDispatch } from "react-redux";
 import styles from "./index.module.css";
 import MethodSelect from "./MethodSelect";
 
-export default function URLInput() {
+export default function BaseInfo() {
   const dispatch = useDispatch();
-  const requestState = useTypedSelector((state) => state.request);
+  const requestState = useRequestSelector();
   const [loading, setLoading] = useState(false);
-
+  console.log(requestState);
   const handleChange = (payload: Partial<typeof requestState>) =>
     dispatch({
-      type: REQUEST_ACTION.UPDATE,
+      type: REQUEST_ACTION.UPDATE_REQUEST,
       payload,
     });
 
@@ -28,18 +28,12 @@ export default function URLInput() {
         onChange={(method) => handleChange({ method })}
       />
       <Input
-        size="large"
         value={requestState.url}
         onPressEnter={handleClick}
         onChange={(e) => handleChange({ url: e.target.value })}
         placeholder="input request url"
       />
-      <Button
-        size="large"
-        loading={loading}
-        type="primary"
-        onClick={handleClick}
-      >
+      <Button loading={loading} type="primary" onClick={handleClick}>
         Send
       </Button>
     </div>

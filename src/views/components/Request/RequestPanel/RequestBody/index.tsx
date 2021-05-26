@@ -4,7 +4,7 @@ import {
   RequestLanguageList,
   REQUEST_BODY_TYPE,
 } from "@/constants";
-import { useTypedDispatch, useTypedSelector } from "@/store";
+import { useRequestSelector, useTypedDispatch } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import { ValueOfSelectList } from "@/utils/type";
 import ErrorBoundary from "antd/lib/alert/ErrorBoundary";
@@ -16,7 +16,7 @@ import BodyType from "./RequestBodyType";
 import XwwFormUrlEncoded from "./XWwwFormUrlEncoded";
 
 export default function Body() {
-  const body = useTypedSelector((state) => state.request.request.body);
+  const body = useRequestSelector((state) => state.request.body);
   const dispath = useTypedDispatch();
 
   const handleTypeChange = (type: REQUEST_BODY_TYPE) => {
@@ -37,7 +37,6 @@ export default function Body() {
 
   const getClass = (type: REQUEST_BODY_TYPE) =>
     body.type === type ? "" : styles.hidden;
-
   return (
     <ErrorBoundary>
       <div className={styles.container}>

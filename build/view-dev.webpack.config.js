@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config = {
   mode: "development",
   devServer: {
-    contentBase: `${__dirname}/dist`,
     port: 4242,
   },
   plugins: [

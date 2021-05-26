@@ -1,7 +1,7 @@
 import EditorLanguageSelect from "@/components/common/EditorLanguageSelect";
 import NoData from "@/components/common/NoData";
 import { LanguageList, ResponseLanguageList } from "@/constants";
-import { useTypedDispatch, useTypedSelector } from "@/store";
+import { useRequestSelector, useTypedDispatch } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import type { ValueOfSelectList } from "@/utils/type";
 import Editor, { useMonaco } from "@monaco-editor/react";
@@ -9,12 +9,13 @@ import { Spin } from "antd";
 import React, { useEffect } from "react";
 import styles from "./index.module.css";
 
-export default function Body() {
-  const response = useTypedSelector((state) => state.request.response);
+export default function ResponseBody() {
+  const request = useRequestSelector();
+  const response = request.response;
 
   const dispatch = useTypedDispatch();
   const monaco = useMonaco();
-  const path = "http-client://response-body";
+  const path = `http-client://response-body/${request.id}`;
 
   useEffect(() => {
     if (!monaco) return;

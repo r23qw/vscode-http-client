@@ -1,11 +1,11 @@
 import NoData from "@/components/common/NoData";
 import SlimTable from "@/components/common/SlimTable";
-import { useTypedSelector } from "@/store";
+import { useRequestSelector } from "@/store";
 import React from "react";
 import setCookieParser from "set-cookie-parser";
 
 export default function Cookies() {
-  const response = useTypedSelector((state) => state.request.response);
+  const response = useRequestSelector((state) => state.response);
   const cookies = response.headers?.["set-cookie"];
   let data: Record<string, any> = [];
 
