@@ -138,10 +138,15 @@ export default function (
       return state;
     }
     case REQUEST_ACTION.UPDATE_RESPONSE: {
-      let target = state.requestList[state.index];
-      state.requestList[state.index] = {
+      const index = action.payload.id
+        ? state.requestList.findIndex((i) => i.id === action.payload.id)
+        : state.index;
+      const data = action.payload.id ? action.payload.response : action.payload;
+
+      let target = state.requestList[index];
+      state.requestList[index] = {
         ...target,
-        response: { ...target.response, ...action.payload },
+        response: { ...target.response, ...data },
       };
       return state;
     }

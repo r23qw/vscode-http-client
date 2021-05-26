@@ -10,7 +10,6 @@ export default function BaseInfo() {
   const dispatch = useDispatch();
   const requestState = useRequestSelector();
   const [loading, setLoading] = useState(false);
-  console.log(requestState);
   const handleChange = (payload: Partial<typeof requestState>) =>
     dispatch({
       type: REQUEST_ACTION.UPDATE_REQUEST,

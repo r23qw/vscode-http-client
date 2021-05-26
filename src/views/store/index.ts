@@ -28,7 +28,6 @@ export function useRequestSelector(selector?: any) {
 export const useTypedDispatch = () => useDispatch<AppDispatch>();
 
 store.subscribe(() => {
-  console.log("state:", store.getState());
   window.vscodeRef?.setState(store.getState());
 });
 

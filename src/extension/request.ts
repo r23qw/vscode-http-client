@@ -52,6 +52,7 @@ export async function handleRequest(
     );
     message = {
       success: true,
+      id: state.id,
       response: {
         data,
         status,
@@ -60,7 +61,7 @@ export async function handleRequest(
       },
     };
   } catch (e) {
-    message = { success: false, error: e };
+    message = { success: false, id: state.id, error: e };
   }
 
   panel.webview.postMessage(message);

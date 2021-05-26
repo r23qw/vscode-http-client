@@ -34,12 +34,13 @@ export const sendRequest = (
         type: "request",
         payload: state,
       };
-      console.log("[to extension]", message);
       window.vscodeRef?.postMessage(message);
 
       const handleMessage = (message: MessageEvent<SendToWebviewMessage>) => {
-        resolve(message.data);
-        window.removeEventListener("message", handleMessage);
+        if (message.data.id === state.id) {
+          resolve(message.data);
+          window.removeEventListener("message", handleMessage);
+        }
       };
 
       window.addEventListener("message", handleMessage);
@@ -48,7 +49,7 @@ export const sendRequest = (
         if (result.success) {
           dispatch({
             type: REQUEST_ACTION.UPDATE_RESPONSE,
-            payload: result.response,
+            payload: result,
           });
         } else {
           message.error(result.error?.message || "unknown error");
