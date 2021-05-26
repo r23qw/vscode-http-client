@@ -139,7 +139,10 @@ export default function (
     }
     case REQUEST_ACTION.UPDATE_RESPONSE: {
       let target = state.requestList[state.index];
-      target.response = { ...target.response, ...action.payload };
+      state.requestList[state.index] = {
+        ...target,
+        response: { ...target.response, ...action.payload },
+      };
       return state;
     }
     default:
