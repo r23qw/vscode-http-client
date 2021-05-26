@@ -94,10 +94,16 @@ export default function (
       return { ...state };
     }
     case REQUEST_ACTION.CHANGE_REQUEST_TAB: {
-      return { ...state, ...action.payload };
+      const index: number = state.requestList.findIndex(
+        (i) => i.id === action.payload.id
+      );
+      return { ...state, index };
     }
     case REQUEST_ACTION.DELETE_REQUEST: {
-      const pos: number = action.payload.index;
+      const pos: number = state.requestList.findIndex(
+        (i) => i.id === action.payload.id
+      );
+
       let index = state.index;
       if (state.requestList.length === 1) {
         state.requestList = [createRequest()];
