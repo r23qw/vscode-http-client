@@ -1,14 +1,11 @@
-import { Input, Menu, Modal } from "antd";
-import React from "react";
+import { Menu } from "antd";
+import React, { useEffect } from "react";
 
 export default function NewMenu() {
+  useEffect(() => {});
   const handleMenuClick = ({ key }: any) => {
-    if (key !== "curl") return;
-    Modal.confirm({
-      icon: null,
-      content: <Input />,
-      onOk() {},
-    });
+    if (key !== "curl") {
+    }
   };
 
   return (
