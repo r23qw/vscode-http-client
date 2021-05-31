@@ -6,6 +6,7 @@ import {
   REQUEST_BODY_TYPE,
 } from "@/constants";
 import { ValueOf, ValueOfSelectList } from "@/utils/type";
+import merge from "lodash/merge";
 import { Action } from "redux";
 import { getID } from "utils/uuid";
 import { getPreviouseState } from "../helper";
@@ -45,8 +46,8 @@ export type RequestState = {
   };
 };
 
-const createRequest = (): RequestState => {
-  return {
+const createRequest = (base = {}): RequestState => {
+  const defaultConfig = {
     id: getID(),
     loading: false,
     url: "",
@@ -72,12 +73,16 @@ const createRequest = (): RequestState => {
       statusText: "",
     },
   };
+  return merge(defaultConfig, base);
 };
+
 interface inititalState {
   index: number;
   requestList: RequestState[];
 }
+
 let previouseState = getPreviouseState("request");
+
 let inititalState: inititalState =
   previouseState !== undefined
     ? (previouseState as inititalState)
@@ -91,7 +96,7 @@ export default function (
 ): inititalState {
   switch (action.type) {
     case REQUEST_ACTION.CREATE_REQUEST: {
-      state.requestList = [...state.requestList, createRequest()];
+      state.requestList = [...state.requestList, createRequest(action.payload)];
       state.index = state.requestList.length - 1;
       return { ...state };
     }

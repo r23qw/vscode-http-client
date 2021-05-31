@@ -47,7 +47,9 @@ export const parseCurlCommand = (curlCommand: string) => {
       }
     }
   }
-
+  if (typeof url === "string") {
+    url = url.replace(/(^['"])|(["']$)/g, "");
+  }
   let headers: Record<string, string> = {};
 
   if (parsedArguments.header) {

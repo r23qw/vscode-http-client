@@ -26,7 +26,10 @@ export default function TabsBar() {
         message.error(result.error?.message || "unknown error");
         return;
       }
-      console.log(result);
+      dispatch({
+        type: REQUEST_ACTION.CREATE_REQUEST,
+        payload: {},
+      });
     });
   };
 
