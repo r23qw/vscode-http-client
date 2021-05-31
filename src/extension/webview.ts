@@ -1,6 +1,6 @@
 import * as path from "path";
 import * as vscode from "vscode";
-import { SendToExtensionMessage } from "../interface/request-message";
+import { SendToExtensionMessage } from "../interface/message";
 import { handleRequest } from "./request";
 
 export function getPanel(
@@ -90,10 +90,7 @@ export function initialPanel(currentPanel: {
   currentPanel.current?.webview.onDidReceiveMessage(
     (message: SendToExtensionMessage) => {
       if (message.type === "request") {
-        handleRequest(
-          message.payload,
-          currentPanel.current as vscode.WebviewPanel
-        );
+        handleRequest(message, currentPanel.current as vscode.WebviewPanel);
       }
     }
   );

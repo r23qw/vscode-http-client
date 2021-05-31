@@ -3,10 +3,7 @@ import { message } from "antd";
 import type React from "react";
 import type { Action } from "redux";
 import type { ThunkDispatch } from "redux-thunk";
-import {
-  SendToExtensionMessage,
-  SendToWebviewMessage,
-} from "../../../interface/request-message";
+import { postMessage } from "../../utils/postMessage";
 
 export enum REQUEST_ACTION {
   CREATE_REQUEST = "REQUEST/CREATE_REQUEST",
@@ -30,27 +27,15 @@ export const sendRequest = (
     >
   ) => {
     setLoading(true);
-    return new Promise<SendToWebviewMessage>((resolve) => {
-      const message: SendToExtensionMessage = {
-        type: "request",
-        payload: state,
-      };
-      window.vscodeRef?.postMessage(message);
-
-      const handleMessage = (message: MessageEvent<SendToWebviewMessage>) => {
-        if (message.data.id === state.id) {
-          resolve(message.data);
-          window.removeEventListener("message", handleMessage);
-        }
-      };
-
-      window.addEventListener("message", handleMessage);
+    return postMessage({
+      type: "request",
+      payload: state,
     })
       .then((result) => {
         if (result.success) {
           dispatch({
             type: REQUEST_ACTION.UPDATE_RESPONSE,
-            payload: result,
+            payload: result.data,
           });
         } else {
           message.error(result.error?.message || "unknown error");

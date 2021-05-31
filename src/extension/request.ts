@@ -3,7 +3,10 @@ import axios from "axios";
 import * as querystring from "querystring";
 import * as Url from "url-parse";
 import * as vscode from "vscode";
-import { SendToWebviewMessage } from "../interface/request-message";
+import {
+  RequestActionMessage,
+  SendToWebviewMessage,
+} from "../interface/message";
 import { HTTP_METHODS } from "../views/constants";
 import { RequestState } from "../views/store/request/reducer";
 
@@ -41,19 +44,19 @@ export const getRequestConfig = (state: RequestState): AxiosRequestConfig => {
 };
 
 export async function handleRequest(
-  state: RequestState,
+  { id, payload }: RequestActionMessage,
   panel: vscode.WebviewPanel
 ) {
   let message: SendToWebviewMessage | null = null;
 
   try {
     const { data, status, statusText, headers } = await axios(
-      getRequestConfig(state)
+      getRequestConfig(payload)
     );
     message = {
       success: true,
-      id: state.id,
-      response: {
+      id,
+      data: {
         data,
         status,
         statusText,
@@ -61,7 +64,7 @@ export async function handleRequest(
       },
     };
   } catch (e) {
-    message = { success: false, id: state.id, error: e };
+    message = { success: false, id, error: e };
   }
 
   panel.webview.postMessage(message);
