@@ -1,6 +1,7 @@
 import * as path from "path";
 import * as vscode from "vscode";
 import { SendToExtensionMessage } from "../interface/message";
+import { parseCurl } from "./parse-curl";
 import { handleRequest } from "./request";
 
 export function getPanel(
@@ -91,6 +92,9 @@ export function initialPanel(currentPanel: {
     (message: SendToExtensionMessage) => {
       if (message.type === "request") {
         handleRequest(message, currentPanel.current as vscode.WebviewPanel);
+      }
+      if (message.type === "parse-curl") {
+        parseCurl(message, currentPanel.current as vscode.WebviewPanel);
       }
     }
   );

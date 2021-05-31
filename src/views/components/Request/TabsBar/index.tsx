@@ -1,8 +1,9 @@
 import { useTypedDispatch } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Input, Menu, Modal } from "antd";
+import { Dropdown, Input, Menu, message, Modal } from "antd";
 import React, { useState } from "react";
+import { postMessage } from "utils/postMessage";
 import styles from "./index.module.css";
 import RequestTabs from "./RequestTabs";
 
@@ -20,7 +21,13 @@ export default function TabsBar() {
     }
   };
   const createRequestByCurl = () => {
-    window.vscodeRef?.postMessage({ type: "parse-curl", payload: curl });
+    postMessage({ type: "parse-curl", payload: curl }).then((result) => {
+      if (!result.success) {
+        message.error(result.error?.message || "unknown error");
+        return;
+      }
+      console.log(result);
+    });
   };
 
   const NewMenu = () => (

@@ -1,9 +1,9 @@
 // from https://github.com/NickCarneiro/curlconverter/blob/master/util.js
-// @ts-nocheck
-import cookie from "cookie";
-import querystring from "querystring";
+
+import * as cookie from "cookie";
+import * as querystring from "querystring";
 import * as URL from "url";
-import yargs from "yargs";
+import * as yargs from "yargs";
 
 export const parseCurlCommand = (curlCommand: string) => {
   // Remove newlines (and from continuations)
@@ -82,6 +82,7 @@ export const parseCurlCommand = (curlCommand: string) => {
     if (!Array.isArray(parsedArguments.F)) {
       parsedArguments.F = [parsedArguments.F];
     }
+    // @ts-ignore
     parsedArguments.F.forEach((multipartArgument) => {
       // input looks like key=value. value could be json or a file path prepended with an @
       const splitArguments = multipartArgument.split("=", 2);
@@ -92,14 +93,14 @@ export const parseCurlCommand = (curlCommand: string) => {
   }
   if (cookieString) {
     const cookieParseOptions = {
-      decode: function (s) {
+      decode: function (s: any) {
         return s;
       },
     };
     // separate out cookie headers into separate data structure
     // note: cookie is case insensitive
     cookies = cookie.parse(
-      cookieString.replace(/^Cookie: /gi, ""),
+      (cookieString as string).replace(/^Cookie: /gi, ""),
       cookieParseOptions
     );
   }
@@ -132,7 +133,7 @@ export const parseCurlCommand = (curlCommand: string) => {
   }
 
   const compressed = !!parsedArguments.compressed;
-  const urlObject = URL.parse(url); // eslint-disable-line
+  const urlObject = URL.parse(url as string); // eslint-disable-line
 
   // if GET request with data, convert data to query string
   // NB: the -G flag does not change the http verb. It just moves the data into the url.
@@ -142,7 +143,7 @@ export const parseCurlCommand = (curlCommand: string) => {
       "d" in parsedArguments ? "d" : "data" in parsedArguments ? "data" : null;
     if (option) {
       let urlQueryString = "";
-
+      // @ts-ignore
       if (url.indexOf("?") < 0) {
         url += "?";
       } else {
@@ -150,6 +151,7 @@ export const parseCurlCommand = (curlCommand: string) => {
       }
 
       if (typeof parsedArguments[option] === "object") {
+        // @ts-ignore
         urlQueryString += parsedArguments[option].join("&");
       } else {
         urlQueryString += parsedArguments[option];
@@ -162,6 +164,7 @@ export const parseCurlCommand = (curlCommand: string) => {
   if (urlObject.query && urlObject.query.endsWith("&")) {
     urlObject.query = urlObject.query.slice(0, -1);
   }
+  // @ts-ignore
   const query = querystring.parse(urlObject.query, { sort: false });
   for (const param in query) {
     if (query[param] === null) {
@@ -188,7 +191,7 @@ export const parseCurlCommand = (curlCommand: string) => {
 
   if (cookies) {
     request.cookies = cookies;
-    request.cookieString = cookieString.replace("Cookie: ", "");
+    request.cookieString = (cookieString as string).replace("Cookie: ", "");
   }
   if (multipartUploads) {
     request.multipartUploads = multipartUploads;

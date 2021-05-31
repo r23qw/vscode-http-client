@@ -10,7 +10,7 @@ export type RequestActionMessage = {
   payload: RequestState;
 };
 
-type ParseCurlActionMessage = {
+export type ParseCurlActionMessage = {
   id: string;
   type: "parse-curl";
   payload: string;
