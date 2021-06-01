@@ -2,3 +2,28 @@
   height: 100%;
   flex-grow: 1;
 }
+
+.status {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  display: flex;
+  height: 46px;
+  justify-items: center;
+  align-items: center;
+}
+
+.dot {
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+}
+
+.success {
+  background-color: #52c41a;
+}
+
+.fail {
+  background-color: #ff4d4f;
+}
