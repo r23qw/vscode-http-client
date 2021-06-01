@@ -1,5 +1,5 @@
-import { v1 as uuidv1 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 export const getID = () => {
-  return uuidv1();
+  return uuidv4();
 };

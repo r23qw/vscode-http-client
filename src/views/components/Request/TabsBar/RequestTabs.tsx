@@ -36,7 +36,7 @@ export default function RequestTabs() {
       onEdit={handleEdit}
     >
       {list.map((tab) => (
-        <Tabs.TabPane tab={`Request ${tab.id.slice(0, 4)}`} key={tab.id} />
+        <Tabs.TabPane tab={`Request ${tab.id.slice(-4)}`} key={tab.id} />
       ))}
     </Tabs>
   );

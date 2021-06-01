@@ -186,14 +186,15 @@ export const parseCurlCommand = (curlCommand: string) => {
   if (Object.keys(query).length > 0) {
     request.query = query;
   }
-  if (headers) {
-    request.headers = headers;
-  }
+
   request.method = method;
 
   if (cookies) {
     request.cookies = cookies;
     request.cookieString = (cookieString as string).replace("Cookie: ", "");
+  }
+  if (headers) {
+    request.headers = { ...headers, cookie: request.cookieString };
   }
   if (multipartUploads) {
     request.multipartUploads = multipartUploads;

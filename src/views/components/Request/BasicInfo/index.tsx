@@ -1,6 +1,6 @@
 import { useRequestSelector } from "@/store";
 import { REQUEST_ACTION, sendRequest } from "@/store/request/action";
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import styles from "./index.module.css";
@@ -24,6 +24,10 @@ export default function BaseInfo() {
   };
 
   const handleClick = () => {
+    if (requestState.url === "") {
+      message.error("Empty Request Url");
+      return;
+    }
     dispatch(sendRequest(requestState, setLoading));
   };
 
@@ -36,7 +40,7 @@ export default function BaseInfo() {
       <Input
         value={requestState.url}
         onPressEnter={handleClick}
-        onChange={(e) => handleChange({ url: e.target.value })}
+        onChange={(e) => handleChange({ url: e.target.value.trim() })}
         placeholder="input request url"
       />
       <Button

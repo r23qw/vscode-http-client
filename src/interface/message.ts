@@ -2,7 +2,11 @@ import type { RequestState } from "../views/store/request/reducer";
 
 export type SendToWebviewMessage =
   | { success: true; id: string; data: object | null }
-  | { success: false; id: string; error: Error | null };
+  | {
+      success: false;
+      id: string;
+      error: { message: string } | null;
+    };
 
 export type RequestActionMessage = {
   id: string;

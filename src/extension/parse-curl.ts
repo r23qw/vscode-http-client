@@ -22,7 +22,7 @@ export async function parseCurl(
     message = {
       success: false,
       id,
-      error: new Error(`Parse Curl Failed`),
+      error: { message: `Parse Curl Failed` },
     };
   }
 

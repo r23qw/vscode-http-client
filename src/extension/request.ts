@@ -16,12 +16,16 @@ export const getRequestConfig = (state: RequestState): AxiosRequestConfig => {
   if (!url.protocol) {
     url.set("protocol", "http");
   }
-
+  const headers: Record<string, string> = {};
+  state.request.headers.forEach(({ key, value }) => {
+    headers[key] = value;
+  });
   const config: AxiosRequestConfig = {
     url: url.href,
     method: state.method,
-    headers: state.request.headers,
+    headers,
     params: state.request.params,
+    validateStatus: () => true,
     paramsSerializer: function (params: any) {
       const param: Record<string, string> = {};
       params.forEach((i: any) => {
@@ -38,7 +42,21 @@ export const getRequestConfig = (state: RequestState): AxiosRequestConfig => {
       state.method
     )
   ) {
-    config.data = state.request.body;
+    const type = state.request.body.type;
+    // @ts-ignore
+    let body = state.request.body[type];
+    let data;
+    if (type === "X_WWW_FORM_URLENCODED") {
+      data = body
+        .map((i: { key: string; value: string }) => `${i.key}=${i.value}`)
+        .join("&");
+    }
+    if (type === "RAW") {
+      data = body.value;
+    }
+    if (data) {
+      config.data = data;
+    }
   }
   return config;
 };
@@ -50,9 +68,11 @@ export async function handleRequest(
   let message: SendToWebviewMessage | null = null;
 
   try {
-    const { data, status, statusText, headers } = await axios(
-      getRequestConfig(payload)
-    );
+    const config = getRequestConfig(payload);
+    let { data, status, statusText, headers } = await axios(config);
+    try {
+      data = JSON.stringify(data);
+    } catch (e) {}
     message = {
       success: true,
       id,
@@ -64,7 +84,11 @@ export async function handleRequest(
       },
     };
   } catch (e) {
-    message = { success: false, id, error: e };
+    message = {
+      success: false,
+      id,
+      error: { message: e.message },
+    };
   }
 
   panel.webview.postMessage(message);

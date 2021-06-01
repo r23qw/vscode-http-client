@@ -10,3 +10,7 @@ interface Window {
   vscodeRef: vscode;
   acquireVsCodeApi: () => vscode;
 }
+
+interface URLSearchParams {
+  [Symbol.iterator]();
+}
