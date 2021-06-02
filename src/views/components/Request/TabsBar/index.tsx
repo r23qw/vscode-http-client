@@ -3,7 +3,7 @@ import { useTypedDispatch } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import { RequestState } from "@/store/request/reducer";
 import { getContentType } from "@/utils/helper";
-import { DownOutlined } from "@ant-design/icons";
+import DownOutlined from "@ant-design/icons/DownOutlined";
 import { Dropdown, Input, Menu, message, Modal } from "antd";
 import React, { useState } from "react";
 import { postMessage } from "utils/postMessage";

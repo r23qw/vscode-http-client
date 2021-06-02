@@ -1,5 +1,5 @@
 import type { RequestRecordItem } from "@/store/request/reducer";
-import { CloseOutlined } from "@ant-design/icons";
+import CloseOutlined from "@ant-design/icons/CloseOutlined";
 import { Checkbox, Input } from "antd";
 import React from "react";
 import styles from "./RequestTableRow.module.css";

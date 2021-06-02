@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
