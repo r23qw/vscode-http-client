@@ -1,7 +1,7 @@
 {
 	"name": "http-client",
 	"displayName": "Http Client",
-	"description": "postman like http client",
+	"description": "A extension for http request,http api test",
 	"version": "0.0.1",
 	"license": "MIT",
 	"engines": {
