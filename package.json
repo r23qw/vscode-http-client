@@ -5,6 +5,7 @@
 	"version": "1.0.0",
 	"icon": "icon.png",
 	"publisher": "aaron00101010",
+	"repository": "https://github.com/Aaron00101010/vscode-http-client",
 	"license": "MIT",
 	"engines": {
 		"vscode": "^1.46.0"
