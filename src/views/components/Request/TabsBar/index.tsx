@@ -80,6 +80,7 @@ export default function TabsBar() {
         },
       });
       setVisible(false);
+      setCurl("");
     });
   };
 

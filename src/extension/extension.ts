@@ -2,6 +2,13 @@ import * as path from "path";
 import * as vscode from "vscode";
 import { getPanel, HttpClientSerializer, initialPanel } from "./webview";
 
+let statusItem = vscode.window.createStatusBarItem(
+  vscode.StatusBarAlignment.Right
+);
+statusItem.command = "http-client.OpenHttpClient";
+statusItem.text = "Http Client";
+statusItem.show();
+
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: { current: vscode.WebviewPanel | undefined } = {
     current: undefined,
