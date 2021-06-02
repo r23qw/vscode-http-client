@@ -2,7 +2,9 @@
 	"name": "http-client",
 	"displayName": "Http Client",
 	"description": "A extension for http request,http api test",
-	"version": "0.0.1",
+	"version": "1.0.0",
+	"icon": "icon.png",
+	"publisher": "aaron00101010",
 	"license": "MIT",
 	"engines": {
 		"vscode": "^1.46.0"
@@ -24,7 +26,7 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run package",
+		"vscode:prepublish": "yarn run package:view && yarn run package",
 		"compile": "webpack --config ./build/node-extension.webpack.config.js",
 		"watch": "run-p watch:* -l",
 		"watch:ext": "webpack --watch --config ./build/node-extension.webpack.config.js",
