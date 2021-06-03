@@ -2,6 +2,8 @@
 ## [1.0.1]
 
 - activate extension when vscode start up finished
+- auto detect response content type and set correspond lang to body editor
+- auto detect import request by curl content type and set correspond to request body editor
 
 ## [1.0.0]
 
