@@ -1,8 +1,8 @@
-import { REQUEST_BODY_TYPE } from "@/constants";
+import { LANGUAGE, REQUEST_BODY_TYPE } from "@/constants";
 import { useTypedDispatch } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import { RequestState } from "@/store/request/reducer";
-import { isFormUrlEncodedContentType } from "@/utils/helper";
+import { isFormUrlEncodedContentType, isJSONContentType } from "@/utils/helper";
 import DownOutlined from "@ant-design/icons/DownOutlined";
 import { Dropdown, Input, Menu, message, Modal } from "antd";
 import React, { useState } from "react";
@@ -48,7 +48,9 @@ export default function TabsBar() {
           });
       } else {
         body[REQUEST_BODY_TYPE.RAW] = {
-          lang: "plaintext",
+          lang: isJSONContentType(data.headers)
+            ? LANGUAGE.JSON
+            : LANGUAGE.PLAIN_TEXT,
           value: data.data,
         };
       }
