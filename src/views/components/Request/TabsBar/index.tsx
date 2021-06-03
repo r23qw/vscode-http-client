@@ -2,7 +2,7 @@ import { REQUEST_BODY_TYPE } from "@/constants";
 import { useTypedDispatch } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import { RequestState } from "@/store/request/reducer";
-import { getContentType } from "@/utils/helper";
+import { isFormUrlEncodedContentType } from "@/utils/helper";
 import DownOutlined from "@ant-design/icons/DownOutlined";
 import { Dropdown, Input, Menu, message, Modal } from "antd";
 import React, { useState } from "react";
@@ -33,10 +33,8 @@ export default function TabsBar() {
       const data = result.data as any;
       console.log(data);
 
-      let contentType = getContentType(data.headers);
-
       const body: Partial<RequestState["request"]["body"]> = {};
-      if (contentType.includes("x-www-form-urlencoded")) {
+      if (isFormUrlEncodedContentType(data.headers)) {
         body[REQUEST_BODY_TYPE.X_WWW_FORM_URLENCODED] = data.data
           .split("&")
           .map((i: string) => {
