@@ -14,8 +14,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:http-client.OpenHttpClient",
-		"onWebviewPanel:HttpClient"
+		"onStartupFinished"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
