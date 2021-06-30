@@ -12,11 +12,9 @@
   word-break: break-all;
 }
 :global(.vscode-dark) .table th,
-.table td {
-  border-color: #434343;
-}
+:global(.vscode-dark) .table td,
 :global(.vscode-high-contrast) .table th,
-.table td {
+:global(.vscode-high-contrast) .table td {
   border-color: #434343;
 }
 
