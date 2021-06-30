@@ -1,4 +1,6 @@
+## [1.0.2]
 
+- Imporve user experience in dark theme
 ## [1.0.1]
 
 - activate extension when vscode start up finished
