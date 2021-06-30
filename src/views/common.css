@@ -1,5 +1,6 @@
 body {
   padding: 10px;
+  background-color: var(--vscode-editor-background) !important;
 }
 * {
   box-sizing: border-box;

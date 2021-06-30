@@ -3,14 +3,21 @@
   border-collapse: collapse;
 }
 .table th,
-.table,
-td {
+.table td {
   border: 1px solid #f0f0f0;
   padding: 5px;
   height: 36px;
   text-align: left;
   padding: 0 10px;
   word-break: break-all;
+}
+:global(.vscode-dark) .table th,
+.table td {
+  border-color: #434343;
+}
+:global(.vscode-high-contrast) .table th,
+.table td {
+  border-color: #434343;
 }
 .table th {
   font-weight: normal;
@@ -33,6 +40,12 @@ th.title {
   margin-bottom: -1px;
   z-index: 1;
   background-color: #fff;
+}
+:global(.vscode-dark) .container header {
+  background-color: transparent;
+}
+:global(.vscode-high-contrast) .container header {
+  background-color: transparent;
 }
 .container section {
   overflow: auto;

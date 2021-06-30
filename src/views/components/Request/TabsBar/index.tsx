@@ -31,7 +31,6 @@ export default function TabsBar() {
         return;
       }
       const data = result.data as any;
-      console.log(data);
 
       const body: Partial<RequestState["request"]["body"]> = {};
       if (isFormUrlEncodedContentType(data.headers)) {

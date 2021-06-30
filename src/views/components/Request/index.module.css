@@ -24,6 +24,12 @@
   background-color: #f0f0f0;
   transition: background-color 0.15s ease;
 }
+:global(.vscode-dark) .container :global .Resizer::after {
+  background-color: #424242;
+}
+:global(.vscode-high-contrast) .container :global .Resizer::after {
+  background-color: #424242;
+}
 .container :global .Resizer:hover {
   transition: all 0.3s ease;
 }

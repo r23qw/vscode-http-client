@@ -1,3 +1,4 @@
+import { ThemeKindContext } from "@/App";
 import EditorLanguageSelect from "@/components/common/EditorLanguageSelect";
 import NoData from "@/components/common/NoData";
 import { LanguageList, ResponseLanguageList } from "@/constants";
@@ -6,7 +7,7 @@ import { REQUEST_ACTION } from "@/store/request/action";
 import type { ValueOfSelectList } from "@/utils/type";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Spin } from "antd";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./index.module.css";
 
 export default function ResponseBody() {
@@ -16,6 +17,7 @@ export default function ResponseBody() {
   const dispatch = useTypedDispatch();
   const monaco = useMonaco();
   const path = `http-client://response-body/${request.id}`;
+  const { theme } = useContext(ThemeKindContext);
 
   useEffect(() => {
     if (!monaco) return;
@@ -48,6 +50,7 @@ export default function ResponseBody() {
         <Editor
           loading={<Spin />}
           path={path}
+          theme={theme}
           options={{
             minimap: { enabled: false },
           }}

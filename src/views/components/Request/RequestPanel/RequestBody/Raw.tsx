@@ -1,9 +1,10 @@
+import { ThemeKindContext } from "@/App";
 import { REQUEST_BODY_TYPE } from "@/constants";
 import { useRequestSelector, useTypedDispatch } from "@/store";
 import { REQUEST_ACTION } from "@/store/request/action";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Spin } from "antd";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 export default function Raw() {
   const request = useRequestSelector();
@@ -12,7 +13,7 @@ export default function Raw() {
   const dispatch = useTypedDispatch();
   const monaco = useMonaco();
   const path = `http-client://request-body/${request.id}`;
-
+  const { theme } = useContext(ThemeKindContext);
   useEffect(() => {
     if (!monaco) return;
     const model = monaco.editor.getModel(path);
@@ -39,6 +40,7 @@ export default function Raw() {
       options={{
         minimap: { enabled: false },
       }}
+      theme={theme}
       onChange={handleContentChange}
       defaultLanguage={lang as string}
       defaultValue={value}

@@ -5,6 +5,10 @@
   background-color: transparent;
   border-width: 0 !important;
 }
+.input:global(.ant-input:focus),
+.input:global(.ant-input:hover) {
+  border-right-width: 0 !important;
+}
 .row .icon {
   color: #1890ff;
   opacity: 0;
