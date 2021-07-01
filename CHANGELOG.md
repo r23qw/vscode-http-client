@@ -1,4 +1,4 @@
-## [1.0.2]
+## [1.0.2~1.0.3]
 
 - Imporve user experience in dark theme
 ## [1.0.1]
