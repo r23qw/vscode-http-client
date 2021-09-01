@@ -17,8 +17,10 @@ export const getRequestConfig = (state: RequestState): AxiosRequestConfig => {
     url.set("protocol", "http");
   }
   const headers: Record<string, string> = {};
-  state.request.headers.forEach(({ key, value }) => {
-    headers[key] = value;
+  state.request.headers.forEach(({ key, value, checked }) => {
+    if (checked) {
+      headers[key] = value;
+    }
   });
   const config: AxiosRequestConfig = {
     url: url.href,
