@@ -1,4 +1,4 @@
-## [1.0.6]
+## [1.0.6 ~ 1.0.7]
 
 - fix import by curl parse cookie header is not case insensitive
 
