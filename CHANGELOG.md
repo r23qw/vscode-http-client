@@ -1,3 +1,7 @@
+## [1.0.6]
+
+- fix import by curl parse cookie header is not case insensitive
+
 ## [1.0.5]
 
 - fix request header unchecked not working
@@ -6,7 +10,7 @@
 
 - Imporve user experience in dark theme
 - add keywords for extensions
-  
+
 ## [1.0.1]
 
 - activate extension when vscode start up finished

@@ -57,7 +57,7 @@ export const parseCurlCommand = (curlCommand: string) => {
       parsedArguments.header = [parsedArguments.header];
     }
     (parsedArguments.header as Record<string, any>[]).forEach((header) => {
-      if (header.indexOf("Cookie") !== -1) {
+      if (header.match(/^cookie/i)) {
         cookieString = header;
       } else {
         const components = header.split(/:(.*)/);
@@ -191,7 +191,7 @@ export const parseCurlCommand = (curlCommand: string) => {
 
   if (cookies) {
     request.cookies = cookies;
-    request.cookieString = (cookieString as string).replace("Cookie: ", "");
+    request.cookieString = (cookieString as string).replace(/^Cookie: /gi, "");
   }
   if (headers) {
     request.headers = { ...headers, cookie: request.cookieString };
