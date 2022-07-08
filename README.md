@@ -19,3 +19,6 @@ You can copy curl from network panel in Chrome DevTools
 
 ![curl](./example/curl.gif)
 
+## License
+
+[MIT](./LICENSE)
