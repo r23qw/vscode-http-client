@@ -2,10 +2,10 @@
 	"name": "http-client",
 	"displayName": "Http Client",
 	"description": "A extension for http request,http api test",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"icon": "icon.png",
-	"publisher": "aaron00101010",
-	"repository": "https://github.com/Aaron00101010/vscode-http-client",
+	"publisher": "r23qw",
+	"repository": "https://github.com/r23qw/vscode-http-client",
 	"license": "MIT",
 	"engines": {
 		"vscode": "^1.46.0"
